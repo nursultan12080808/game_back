@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="game_row">
+        <div class="game_col1">
+            <div class="game_name">
+                {{ game.name }}
+            </div>
+            <div class="category_game">
+                Категория: <span>{{ game.category }}</span>
+            </div>
+            <div class="game_img">
+                <img src="{{ game.image.url }}" alt="">
+            </div>
+            <div class="game_content">
+                {{ game.content }}
+            </div>
+            {% for item in game.tag.all %}
+            <span>{{ item.name }}</span><span> | </span>
+            {% endfor %}
+        </div>
+        <div class="game_col2">
+            <div class="block_x">
+                <div class="game_name">
+                    {{ game.name }}
+                </div>
+                <div class="category_game">
+                    Категория: <span>{{ game.category }}</span>
+                </div>
+            </div>
+            <div class="game_img2">
+                <img src="{{ game.image.url }}" alt="">
+            </div>
+            <div class="game_price_">
+                ${{ game.price }}
+            </div>
+            <div class="date">
+                {{ game.date }}
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="game_buy-btn">
+                <a href="{% url 'update_game' id=game.id %}" class="">UPDATE</a>
+            </div>
+            <div class="add_to_cart-btn">
+                <a href="{% url 'delete_game' id=game.id %}">DELETE</a>
+            </div>
+            {% endif %}
+            <div class="attr_block">
+                <div class="attr_name">Создатель:</div>
+                <div class="attr_value">{{ game.author}}</div>
+            </div>
+            <div class="tags123">
+            {% for item in game.tag.all %}
+                <span>{{ item.name }}</span> <span>|</span>    
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% if games.has_previous or games.has_next %}
+    <div class="pagination_row">
+        {% if games.has_previous %}  
+        <a class="paginator_button" href="?page={{ games.previous_page_number }}"><</a>
+        {% endif %}
+        {% for item in games.paginator.page_range %}
+        {% if item == page %}
+        <a class="paginator_button active" href="?page={{ item }}">{{ item }}</a>
+        {% else %}
+        <a class="paginator_button" href="?page={{ item }}">{{ item }}</a>
+        {% endif %}
+        {% endfor %}
+        {% if games.has_next %}
+        <a class="paginator_button" href="?page={{ games.next_page_number }}">></a>
+    {% endif %}
+    </div>
+{% endif %}

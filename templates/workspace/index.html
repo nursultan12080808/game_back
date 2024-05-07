@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Workspace Games{% endblock title %}
+
+{% block content %}
+<div class="blur none" id="blur1"></div>
+<div class="games">
+    <div class="row_container">
+        <div id="filter_burger_btn" class="filter_burger-btn">
+            Фильтры <i class='bx bx-filter'></i>
+        </div>
+        <div class="row_game">
+            {% for item in games %}
+            <div class="item">
+                <a href="{% url 'workspace_detail_game' id=item.id %}" class="item-a">
+                    <div class="item_user_name">{{ request.user }}</div>
+                    <div class="img">
+                        <img class="img_game" src="{{ item.image.url }}" alt="">
+                    </div>
+                    <div class="content">
+                        <div class="game_category">
+                            {{ item.category }}
+                        </div>
+                        <div class="game_title">
+                            {{ item.name }}
+                        </div>
+                        <div class="game_price">
+                            ${{ item.price }}
+                        </div>
+                        <div class="tags">
+                            <a class="tag" href="{% url 'list_games' %}">Игра</a>
+                            {% for tag in item.tag.all %}
+                            <span class="tag"> | {{ tag.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="form_filter" id="filter_burger">
+        {% include 'components/filter.html' %}
+    </div>
+</div>
+<div class="pagintion">
+    {% include 'components/games_paginations.html' %}
+</div>
+{% endblock %}  

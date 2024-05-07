@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="nav_model3" id="model_nav3">
+        <div class="nav2_model">
+            <div class="x2" id="x2"><i class='bx bx-x'></i></div>
+            <form action="{% url 'search' %}" method="get">
+                <i class='bx bx-search lupa2'></i>
+                <input type="text" class="search2" name="search2" placeholder="Поиск игры...">
+            </form>
+        </div>
+    </div>
+
+    <div class="nav2_row">
+        <div class="lupa_none1" id="lupa"><i class='bx bx-search lupa_none'></i></div>
+        <form action="{% url 'search' %}" method="get">
+            <div class="search_div">
+                <i class='bx bx-search lupa'></i>
+                <input type="text" placeholder="Поиск игры..." class="search" name="search" id="">
+            </div>
+        </form>
+            <a class="navik_a" href="{% url 'main' %}">Главное</a>
+            <a class="navik_a" href="{% url 'list_games' %}">Все игры</a>
+    </div>
+</div>

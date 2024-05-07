@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} CreateGame {% endblock %}
+
+{% block content %}
+    <div class="form_123">
+        <div class="form_create">
+            <form action="{% url 'create_game' %}" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="create_btn" type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

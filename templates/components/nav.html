@@ -1,0 +1,76 @@
+<div class="container">
+    <div id="nav_menu" class="nav_menu none">
+        <div class="x" id="close1"><i class='bx bx-x'></i></div>
+        <div class="nav_menu-row">
+            {% if request.user.is_authenticated %}
+            <div class="profile1">
+                <a href="{% url 'profile' %}"><i class='bx bx-user-circle'></i> {{request.user}}</a>
+            </div>
+            <div class="w-100">
+                <a href="{% url 'workspace' %}">Работы</a>
+            </div>
+            <div class="w-100">
+                <a href="{% url 'create_game' %}">Создать игру</a>
+            </div>
+            <div class="blue w-100">
+                <a href="{% url 'logout' %}">Выйти</a>
+            </div>
+        {% else %}
+            <div class="profile1">
+                <a href="{% url 'login' %}"><i class='bx bx-user-circle'></i>Вход</a>
+            </div>
+            <div class="w-100">
+                <a href="#">Домой</a>
+            </div>
+            <div class="w-100">
+                <a href="#">Поддержка</a>
+            </div>
+            <div class="blue w-100">
+                <a href="{% url 'register' %}">Регистрация</a>
+            </div>
+        {% endif %}
+        </div>
+
+    </div>
+    <div class="nav_row">
+        <div class="nav_col1">
+            <div class="store">
+                STORE
+            </div>
+            <span class="palka">|</span>
+            <div class="category" id="category">
+                Категории <i class='bx crest3 bx-chevron-down' id="crest"></i>
+            </div>
+            <div id="category_menu" class="category_menu">
+                    {% for category in categories %}
+                    <div class=""><a class="cat" href="{% url 'games_by_category' cat_id=category.id %}">{{ category.name }}</a></div>
+                    {% endfor %}
+            </div>
+            {% if request.user.is_authenticated  %}
+                <a href="{% url 'workspace' %}" class="workspace">Работы</a>
+            {% endif %}
+        </div>
+        <div class="nav_col2">
+            {% if request.user.is_authenticated %}
+            <div class="profile">
+                <a href="{% url 'profile' %}"><i class='bx bx-user-circle'></i> {{request.user}} </a>
+            </div>
+            <div class="palka">|</div>
+            <div class="add">
+                <a href="{% url 'create_game' %}">Создать игру</a>
+            </div>
+            <div class="palka">|</div>
+            <div class="add">
+                <a href="{% url 'logout' %}">Выйти</a>
+            </div>
+            {% else %}
+            <div class="profile">
+                <div><i class='bx bx-user-circle'></i> <a href="{% url 'login' %}">вход</a> | <a href="{% url 'register' %}">регистрация</a></div>
+            </div>
+            {% endif %}
+            <div class="burger_menu" id="burger_menu">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+    </div>
+</div>
